@@ -7,6 +7,14 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+
+/**
+ * @email: dong980514280@gmail.com
+ * @author: Dong
+ * @date: 2018/11/18
+ * @time: 22:43
+ * Ps: UserServiceImpl类
+ */
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 

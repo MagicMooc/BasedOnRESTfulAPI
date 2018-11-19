@@ -2,6 +2,13 @@ package com.ssm.model;
 
 import java.util.Date;
 
+/**
+ * @email: dong980514280@gmail.com
+ * @author: Dong
+ * @date: 2018/11/18
+ * @time: 22:43
+ * Ps: User
+ */
 public class User {
 
     private long id;

@@ -11,6 +11,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @email: dong980514280@gmail.com
+ * @author: Dong
+ * @date: 2018/11/18
+ * @time: 22:43
+ * Ps: UserController
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
