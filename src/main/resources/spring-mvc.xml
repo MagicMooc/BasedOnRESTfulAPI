@@ -17,15 +17,8 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-    <!-- 扫描web相关的bean -->
+    <!-- 扫描web相关的Controller -->
     <context:component-scan base-package="com.ssm.controller"/>
-
-    <!--
-        如果给某一个视图配置了映射信息，其他的控制器方法映射全部无效，
-        解决方法：开启SpringMVC注解模式 <mvc:annotation-driven/>
-    -->
-    <!-- 给视图配置controller -->
-    <mvc:view-controller path="helloCtrl" view-name="result"/>
 
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
@@ -34,19 +27,14 @@
     <mvc:default-servlet-handler/>
 
 
-    <!-- 配置jsp 显示ViewResolver，视图解析器 -->
+    <!--
+        配置jsp 显示ViewResolver，视图解析器
+    -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--
-        jstl国际化配置
-        要用接口来访问，直接访问无效
-    -->
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="encode"/>
-    </bean>
 
 </beans>
