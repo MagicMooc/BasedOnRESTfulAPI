@@ -2,7 +2,7 @@ package com.ssm.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.ssm.model.User;
+import com.ssm.entity.User;
 import com.ssm.service.IUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;

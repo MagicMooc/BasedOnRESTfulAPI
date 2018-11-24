@@ -1,6 +1,6 @@
 package com.ssm.dao;
 
-import com.ssm.model.User;
+import com.ssm.entity.User;
 
 
 /**

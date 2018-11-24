@@ -1,6 +1,6 @@
 package com.ssm.service;
 
-import com.ssm.model.User;
+import com.ssm.entity.User;
 
 /**
  * @email: dong980514280@gmail.com
