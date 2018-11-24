@@ -4,6 +4,7 @@ import com.ssm.dao.IUserDao;
 import com.ssm.entity.User;
 import com.ssm.service.IUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
  * Ps: UserServiceImpl类
  */
 @Service("userService")
+@Transactional(readOnly = true)
 public class UserServiceImpl implements IUserService {
 
     @Resource
@@ -25,14 +27,17 @@ public class UserServiceImpl implements IUserService {
         return this.userDao.selectUser(userId);
     }
 
+    @Transactional(readOnly = false)
     public Integer addUser(User user){
         return this.userDao.addUser(user);
     }
 
+    @Transactional(readOnly = false)
     public Integer updateUser(User user){
         return this.userDao.updateUser(user);
     }
 
+    @Transactional(readOnly = false)
     public Integer deleteUser(long id){
         return this.userDao.deleteUser(id);
     }

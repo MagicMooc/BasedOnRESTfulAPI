@@ -1,5 +1,6 @@
 package com.ssm.controller;
 
+import com.ssm.common.bean.VResponse;
 import com.ssm.entity.User;
 import com.ssm.service.IUserService;
 import org.springframework.stereotype.Controller;
@@ -47,9 +48,9 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
-    public String addUser(@RequestBody User user) {
+    public VResponse<Object> addUser(@RequestBody User user) {
         this.userService.addUser(user);
-        return "{\"code\": 1, \"msg\": \"添加成功\"}";
+        return VResponse.success("添加成功");
     }
 
     /**
@@ -59,9 +60,9 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
-    public String updateUser(@RequestBody User user) {
+    public VResponse<Object> updateUser(@RequestBody User user) {
         this.userService.updateUser(user);
-        return "{\"code\": 1, \"msg\": \"修改成功\"}";
+        return VResponse.success("修改成功");
     }
 
     /**
@@ -71,8 +72,8 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
-    public String deleteUser(@RequestParam("id") long id) {
+    public VResponse<Object> deleteUser(@RequestParam("id") long id) {
         this.userService.deleteUser(id);
-        return "{\"code\": 1, \"msg\": \"删除成功\"}";
+        return VResponse.success("删除成功");
     }
 }
