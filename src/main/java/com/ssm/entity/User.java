@@ -11,14 +11,14 @@ import java.util.Date;
  */
 public class User {
 
-    private long id;
-    private String email;
-    private String password;
-    private String username;
-    private String role;
-    private int status;
-    private Date regTime;
-    private String regIp;
+    private long id;            //  用户编号
+    private String email;       //  邮箱
+    private String password;    //  密码
+    private String username;    //  用户名
+    private String role;        //  角色
+    private int status;         //  状态
+    private Date regTime;       //  注册时间
+    private String regIp;       //  注册ip
 
     public long getId() {
         return id;

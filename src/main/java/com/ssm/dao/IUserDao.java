@@ -14,4 +14,10 @@ public interface IUserDao {
 
     User selectUser(long id);
 
+    Integer addUser(User user);
+
+    Integer updateUser(User user);
+
+    Integer deleteUser(long id);
+
 }

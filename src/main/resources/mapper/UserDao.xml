@@ -13,7 +13,47 @@
 <mapper namespace="com.ssm.dao.IUserDao">
 
     <select id="selectUser" resultType="User" parameterType="long">
-        SELECT * FROM user WHERE id = #{id};
+        SELECT * FROM user WHERE id = #{id}
     </select>
+
+    <!-- 如果是id是自增长的，不用id -->
+    <insert id="insertUser" parameterType="User">
+        insert into user (
+            id,
+            email,
+            password,
+            username,
+            role,
+            status,
+            regTime,
+            regIp
+        )values (
+            #{id},
+            #{email},
+            #{password},
+            #{username},
+            #{role},
+            #{status},
+            #{regTime},
+            #{regIp}
+        )
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user set
+            email = #{email},
+            password = #{password},
+            username = #{username},
+            role = #{role},
+            status = #{status},
+            regTime = #{regTime},
+            regIp = #{regIp}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="long">
+        delete from user where id = #{id}
+    </delete>
 
 </mapper>

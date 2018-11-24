@@ -13,4 +13,10 @@ public interface IUserService {
 
     public User selectUser(long userId);
 
+    public Integer addUser(User user);
+
+    public Integer updateUser(User user);
+
+    public Integer deleteUser(long id);
+
 }

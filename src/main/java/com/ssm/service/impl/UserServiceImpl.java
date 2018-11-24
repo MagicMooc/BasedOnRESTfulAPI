@@ -25,4 +25,16 @@ public class UserServiceImpl implements IUserService {
         return this.userDao.selectUser(userId);
     }
 
+    public Integer addUser(User user){
+        return this.userDao.addUser(user);
+    }
+
+    public Integer updateUser(User user){
+        return this.userDao.updateUser(user);
+    }
+
+    public Integer deleteUser(long id){
+        return this.userDao.deleteUser(id);
+    }
+
 }
