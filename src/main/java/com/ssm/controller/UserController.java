@@ -40,6 +40,11 @@ public class UserController {
         return user;
     }
 
+    /**
+     * 增加用户
+     * @param user
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     public String addUser(@RequestBody User user) {
@@ -47,6 +52,11 @@ public class UserController {
         return "{\"code\": 1, \"msg\": \"添加成功\"}";
     }
 
+    /**
+     *  修改用户
+     * @param user
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
     public String updateUser(@RequestBody User user) {
@@ -54,6 +64,11 @@ public class UserController {
         return "{\"code\": 1, \"msg\": \"修改成功\"}";
     }
 
+    /**
+     *  删除用户
+     * @param id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
     public String deleteUser(@RequestParam("id") long id) {
