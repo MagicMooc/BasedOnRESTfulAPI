@@ -23,6 +23,13 @@ public class UserController {
     @Resource
     private IUserService userService;
 
+    @ResponseBody
+    @RequestMapping("/test")
+    public String test(){
+        Integer test = userService.test();
+        return "ok" + test;
+    }
+
     //  返回jsp页面
     @RequestMapping(value = "/getUserJSP", method = RequestMethod.GET)
     public ModelAndView getUserJSP(@RequestParam("id") long id) {

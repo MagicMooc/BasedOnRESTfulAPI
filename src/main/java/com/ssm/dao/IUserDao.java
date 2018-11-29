@@ -20,4 +20,6 @@ public interface IUserDao {
 
     Integer deleteUser(long id);
 
+    Integer test();
+
 }

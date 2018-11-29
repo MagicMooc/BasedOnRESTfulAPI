@@ -19,4 +19,5 @@ public interface IUserService {
 
     public Integer deleteUser(long id);
 
+    public Integer test();
 }

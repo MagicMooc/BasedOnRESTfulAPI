@@ -42,4 +42,8 @@ public class UserServiceImpl implements IUserService {
         return this.userDao.deleteUser(id);
     }
 
+    public Integer test(){
+        return this.userDao.test();
+    }
+
 }
