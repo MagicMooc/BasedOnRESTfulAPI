@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.StudentDao">
+
+    <!--根据具体id查询-->
+    <select id="selectStudentById" resultType="Student" parameterType="long">
+        SELECT * FROM student WHERE id = #{id}
+    </select>
+
+
+    <!--查询出所有数据-->
+    <select id="findStudentList" resultType="Student" parameterType="long">
+        SELECT * FROM student
+    </select>
+
+    <!--统计-->
+    <select id="findStudentListCount" resultType="Integer">
+        SELECT count(*) FROM student
+    </select>
+
+    <!-- 如果是id是自增长的，不用id -->
+    <insert id="insertStudent" parameterType="Student">
+        insert into student (
+            id,
+            name,
+            sex,
+            major
+        )values (
+            #{id},
+            #{name},
+            #{sex},
+            #{major}
+        )
+    </insert>
+
+    <update id="updateStudent" parameterType="Student">
+        update student set
+            name = #{name},
+            sex = #{sex},
+            major = #{major}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="deleteStudent" parameterType="long">
+        delete from student where id = #{id}
+    </delete>
+
+
+
+</mapper>
