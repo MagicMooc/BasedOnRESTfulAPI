@@ -27,6 +27,16 @@
     <mvc:default-servlet-handler/>
 
 
+    <!--&lt;!&ndash; 接口跨域配置 &ndash;&gt;-->
+    <!--<mvc:>-->
+        <!--<mvc:mapping path="/**"-->
+                     <!--allowed-origins="*"-->
+                     <!--allowed-methods="POST, GET, OPTIONS, DELETE, PUT"-->
+                     <!--allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"-->
+                     <!--allow-credentials="true" />-->
+    <!--</mvc:>-->
+
+
     <!--
         配置jsp 显示ViewResolver，视图解析器
     -->
@@ -35,6 +45,7 @@
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
 
 
 </beans>

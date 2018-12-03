@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <link href="static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+</head>
+<body onload="getData()">
+<div style="width: 300px; margin: 0 auto;">
+    <br>
+    <br>
+    <button class="btn btn-info" data-toggle="modal" data-target="myModal" onclick="insertData()">新增</button>
+
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">修改</button>
+</div>
+<!--表格-->
+<div class="table-responsive" id="app" style="text-align: center">
+    <br>
+    <br>
+    <table class="table table-hover" style="text-align: center">
+        <br>
+        <br>
+        <thead>
+        <tr>
+            <th style="text-align: center">学号</th>
+            <th style="text-align: center">名字</th>
+            <th style="text-align: center">性别</th>
+            <th style="text-align: center">专业</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in dataInfo">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.sex}}</td>
+            <td>{{item.major}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                    <label for="id" class="col-sm-2 control-label" style="text-align: right">学号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="id"
+                               placeholder="请输入学号" style="width: 200px">
+                    </div>
+                    <label for="name" class="col-sm-2 control-label">名字</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name"
+                               placeholder="请输入名字" style="width: 200px">
+                    </div>
+                    <label for="sex" class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="sex"
+                               placeholder="请输入性别" style="width: 200px">
+                    </div>
+                    <label for="major" class="col-sm-2 control-label">专业</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="major"
+                               placeholder="请输入专业" style="width: 200px">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function getData() {
+        axios.get('http://127.0.0.1:8085/student/findStudentList')
+            .then(function (response) {
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        dataInfo: response.data.result
+                    }
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+<script src="static/js/axios.min.js"></script>
+<script src="static/js/vue.js"></script>
+<script src="static/bootstrap/js/jquery-3.3.1.min.js"></script>
+<script src="static/bootstrap/js/bootstrap-3.3.5.min.js"></script>
+</body>
+</html>

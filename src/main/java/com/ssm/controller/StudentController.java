@@ -6,7 +6,6 @@ import com.ssm.entity.Student;
 import com.ssm.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,27 +17,14 @@ import java.util.List;
  * @Time: 4:36 PM
  * 传Json
  */
-
+//解决跨域问题
+@CrossOrigin
 @Controller
 @RequestMapping("/student")
-public class StudentController{
+public class StudentController extends BaseController{
 
     @Resource
     private StudentService studentService;
-
-    /**
-     * 测试用，返回jsp页面
-     * @param id
-     * @return
-     */
-    @GetMapping(value = "/getStudentJsp")
-    public ModelAndView getStudentJsp(@RequestParam("id") long id){
-        Student student =this.studentService.selectStudentById(id);
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("student");
-        mv.addObject("student", student);
-        return mv;
-    }
 
     /**
      * 使用ResponseBody返回Json格式数据
