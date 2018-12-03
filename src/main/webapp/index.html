@@ -15,9 +15,7 @@
 <!--表格-->
 <div class="table-responsive" id="app" style="text-align: center">
     <br>
-    <br>
     <table class="table table-hover" style="text-align: center">
-        <br>
         <br>
         <thead>
         <tr>
@@ -34,6 +32,10 @@
             <td>{{item.name}}</td>
             <td>{{item.sex}}</td>
             <td>{{item.major}}</td>
+            <td>
+                <button class="btn btn-primary">更新</button>
+                <button class="btn btn-danger">删除</button>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -117,6 +119,8 @@
             .then(res =>{
                 if (res.data.code === 1) {
                     alert("添加成功");
+                    // 强制刷新页面
+                    window.location.href=window.location.href;
                 }else {
                     alert('添加失败');
                 }
