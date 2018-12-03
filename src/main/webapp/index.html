@@ -2,16 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>lintiaoda</title>
     <link href="static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 </head>
 <body onload="getData()">
 <div style="width: 300px; margin: 0 auto;">
     <br>
     <br>
-    <button class="btn btn-info" data-toggle="modal" data-target="myModal" onclick="insertData()">新增</button>
-
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">修改</button>
+    <button class="btn btn-info" data-toggle="modal" data-target="#insertModal">新增</button>
+    <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal">修改</button>-->
 </div>
 <!--表格-->
 <div class="table-responsive" id="app" style="text-align: center">
@@ -26,6 +25,7 @@
             <th style="text-align: center">名字</th>
             <th style="text-align: center">性别</th>
             <th style="text-align: center">专业</th>
+            <th style="text-align: center">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -38,40 +38,35 @@
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--新增学生信息模态框-->
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="myInsertModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myInsertModalLabel" style="text-align: center">新增学生信息</h4>
             </div>
             <div class="modal-body">
-                    <label for="id" class="col-sm-2 control-label" style="text-align: right">学号</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id"
-                               placeholder="请输入学号" style="width: 200px">
-                    </div>
-                    <label for="name" class="col-sm-2 control-label">名字</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name"
-                               placeholder="请输入名字" style="width: 200px">
-                    </div>
-                    <label for="sex" class="col-sm-2 control-label">性别</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sex"
-                               placeholder="请输入性别" style="width: 200px">
-                    </div>
-                    <label for="major" class="col-sm-2 control-label">专业</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="major"
-                               placeholder="请输入专业" style="width: 200px">
-                    </div>
+                <div style="text-align: center">
+                    <label for="insertId" class="col-sm-2 control-label">学号</label>
+                    <input type="text" class="form-control" id="insertId" placeholder="请输入学号" style="width: 200px">
+                    <br>
+                    <label for="insertName" class="col-sm-2 control-label">名字</label>
+                    <input type="text" class="form-control" id="insertName" placeholder="请输入名字" style="width: 200px">
+                    <br>
+                    <label for="insertSex" class="col-sm-2 control-label">性别</label>
+                    <input type="text" class="form-control" id="insertSex" placeholder="请输入性别" style="width: 200px">
+                    <br>
+                    <label for="insertMajor" class="col-sm-2 control-label">专业</label>
+                    <input type="text" class="form-control" id="insertMajor" placeholder="请输入专业" style="width: 200px">
+                    <br>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align:center">取消</button>
+                <button type="button" class="btn btn-success" style="text-align: center" onclick="insert()" data-dismiss="modal">新增</button>
             </div>
         </div>
     </div>
@@ -90,6 +85,44 @@
             .catch(function (error) {
                 console.log(error);
             });
+    }
+    // 传form表单时的写法
+    // function insert() {
+    //     var params = new URLSearchParams();
+    //     params.append('id', document.getElementById('insertId').value);
+    //     params.append('name', document.getElementById('insertName').value);
+    //     params.append('sex', document.getElementById('insertSex').value);
+    //     params.append('major', document.getElementById('insertMajor').value);
+    //     axios.put('http://127.0.0.1:8085/student/insertStudent', params)
+    //         .then(function (response) {
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error)
+    //         })
+    // }
+    // 传json格式的写法
+    function insert() {
+        let id = document.getElementById("insertId").value;
+        let name = document.getElementById("insertName").value;
+        let sex = document.getElementById("insertSex").value;
+        let major = document.getElementById("insertMajor").value;
+        axios.put(`http://127.0.0.1:8085/student/insertStudent`,
+            {
+                id: id,
+                name: name,
+                sex: sex,
+                major: major
+            }
+            )
+            .then(res =>{
+                if (res.data.code === 1) {
+                    alert("添加成功");
+                }else {
+                    alert('添加失败');
+                }
+            })
+            .catch(res => {
+            })
     }
 </script>
 <script src="static/js/axios.min.js"></script>
