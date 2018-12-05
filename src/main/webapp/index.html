@@ -46,7 +46,7 @@
                 <td>{{item.sex}}</td>
                 <td>{{item.major}}</td>
                 <td>
-                    <button class="btn btn-success">更新</button>
+                    <button class="btn btn-success" data-target="#updateModal" data-toggle="modal">更新</button>
                     <button class="btn btn-danger" onclick="deleteInfo()">删除</button>
                 </td>
             </tr>
@@ -84,6 +84,41 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align:center">取消</button>
                 <button type="button" class="btn btn-success" style="text-align: center" onclick="insert()"
                         data-dismiss="modal">新增
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--更新一整条数据-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myUpdateModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myUpdateModalLabel" style="text-align: center">更新学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center">
+                    <label for="updateId" class="col-sm-2 control-label">学号</label>
+                    <input type="text" class="form-control" id="updateId" placeholder="请输入学号" style="width: 200px">
+                    <br>
+                    <label for="updateName" class="col-sm-2 control-label">名字</label>
+                    <input type="text" class="form-control" id="updateName" placeholder="请输入名字" style="width: 200px">
+                    <br>
+                    <label for="updateSex" class="col-sm-2 control-label">性别</label>
+                    <input type="text" class="form-control" id="updateSex" placeholder="请输入性别" style="width: 200px">
+                    <br>
+                    <label for="updateMajor" class="col-sm-2 control-label">专业</label>
+                    <input type="text" class="form-control" id="updateMajor" placeholder="请输入专业" style="width: 200px">
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align:center">取消</button>
+                <button type="button" class="btn btn-success" style="text-align: center" onclick="updateInfo()"
+                        data-dismiss="modal">更新
                 </button>
             </div>
         </div>
@@ -144,9 +179,36 @@
             .catch(res => {
             })
     }
+    // 编辑更新一整条信息
+    function updateInfo() {
+        let id = document.getElementById("updateId").value;
+        let name = document.getElementById("updateName").value;
+        let sex = document.getElementById("updateSex").value;
+        let major = document.getElementById("updateMajor").value;
+        axios.put(`http://127.0.0.1:8085/student/updateStudent`,
+            {
+                id: id,
+                name: name,
+                sex: sex,
+                major: major
+            }
+        )
+            .then(res => {
+                if (res.data.code === 1) {
+                    alert("更新成功");
+                    // 强制刷新页面
+                    window.location.href = window.location.href;
+                } else {
+                    alert('更新失败');
+                }
+            })
+            .catch(res => {
+            })
+    }
 
     function deleteInfo() {
-        var param = {id: '1'};
+        // let deleteId = document.getElementById("id");
+        var param = {id: 555};
         axios.delete('http://127.0.0.1:8085/student/deleteStudent', {params: param})
             .then(res => {
             })
