@@ -9,36 +9,50 @@
 <div style="width: 300px; margin: 0 auto;">
     <br>
     <br>
-    <button class="btn btn-info" data-toggle="modal" data-target="#insertModal">新增</button>
-    <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateModal">修改</button>-->
+
 </div>
 <!--表格-->
-<div class="table-responsive" id="app" style="text-align: center">
-    <br>
-    <table class="table table-hover" style="text-align: center">
+<div class="container">
+    <!--标题 -->
+    <div class="row">
+        <div class="col-md-12">
+            <h1>学生信息表</h1>
+        </div>
+    </div>
+    <!--按钮 -->
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#insertModal">新增</button>
+            <button class="btn btn-danger" id="user_delete_all_btn">删除</button>
+        </div>
+    </div>
+    <div class="table-responsive" id="app" style="text-align: center">
         <br>
-        <thead>
-        <tr>
-            <th style="text-align: center">学号</th>
-            <th style="text-align: center">名字</th>
-            <th style="text-align: center">性别</th>
-            <th style="text-align: center">专业</th>
-            <th style="text-align: center">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="item in dataInfo">
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.sex}}</td>
-            <td>{{item.major}}</td>
-            <td>
-                <button class="btn btn-primary">更新</button>
-                <button class="btn btn-danger">删除</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table table-hover" style="text-align: center">
+            <br>
+            <thead>
+            <tr>
+                <th style="text-align: center">学号</th>
+                <th style="text-align: center">名字</th>
+                <th style="text-align: center">性别</th>
+                <th style="text-align: center">专业</th>
+                <th style="text-align: center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="item in dataInfo">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.sex}}</td>
+                <td>{{item.major}}</td>
+                <td>
+                    <button class="btn btn-success">更新</button>
+                    <button class="btn btn-danger" onclick="deleteInfo()">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <!--新增学生信息模态框-->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="myInsertModalLabel">
@@ -68,7 +82,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align:center">取消</button>
-                <button type="button" class="btn btn-success" style="text-align: center" onclick="insert()" data-dismiss="modal">新增</button>
+                <button type="button" class="btn btn-success" style="text-align: center" onclick="insert()"
+                        data-dismiss="modal">新增
+                </button>
             </div>
         </div>
     </div>
@@ -115,15 +131,24 @@
                 sex: sex,
                 major: major
             }
-            )
-            .then(res =>{
+        )
+            .then(res => {
                 if (res.data.code === 1) {
                     alert("添加成功");
                     // 强制刷新页面
-                    window.location.href=window.location.href;
-                }else {
+                    window.location.href = window.location.href;
+                } else {
                     alert('添加失败');
                 }
+            })
+            .catch(res => {
+            })
+    }
+
+    function deleteInfo() {
+        var param = {id: '1'};
+        axios.delete('http://127.0.0.1:8085/student/deleteStudent', {params: param})
+            .then(res => {
             })
             .catch(res => {
             })
