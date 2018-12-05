@@ -48,8 +48,6 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.updateStudent(student);
     }
 
-
-
     @Transactional(readOnly = false)
 
     public Integer deleteStudent(long id) {
