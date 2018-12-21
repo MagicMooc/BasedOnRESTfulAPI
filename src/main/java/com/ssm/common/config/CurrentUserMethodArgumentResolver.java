@@ -1,6 +1,6 @@
 package com.ssm.common.config;
 import com.ssm.common.annotation.CurrentUser;
-import com.ssm.entity.Login;
+import com.ssm.entity.User;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -15,13 +15,13 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(Login.class)
+        return parameter.getParameterType().isAssignableFrom(User.class)
                 && parameter.hasParameterAnnotation(CurrentUser.class);
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        Login login = (Login) webRequest.getAttribute("currentUser", RequestAttributes.SCOPE_REQUEST);
+        User login = (User) webRequest.getAttribute("currentUser", RequestAttributes.SCOPE_REQUEST);
         if (login != null) {
             return login;
         }

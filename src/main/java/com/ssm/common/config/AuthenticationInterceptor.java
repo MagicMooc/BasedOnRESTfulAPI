@@ -6,8 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.ssm.common.annotation.LoginRequired;
-import com.ssm.entity.Login;
-import com.ssm.service.LoginService;
+import com.ssm.entity.User;
+import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
-    private LoginService loginService;
+    private UserService userService;
 
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
@@ -47,20 +47,20 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             } catch (JWTDecodeException e) {
                 throw new RuntimeException("token无效，请重新登录");
             }
-            Login login = loginService.findById(userId);
-            if (login == null) {
+            User user = userService.findById(userId);
+            if (user == null) {
                 throw new RuntimeException("用户不存在，请重新登录");
             }
             // 验证 token
             try {
-                JWTVerifier verifier =  JWT.require(Algorithm.HMAC256(login.getPassword())).build();
+                JWTVerifier verifier =  JWT.require(Algorithm.HMAC256(user.getPassword())).build();
                 try {
                     verifier.verify(token);
                 } catch (JWTVerificationException e) {
                     throw new RuntimeException("token无效，请重新登录");
                 }
             } catch (UnsupportedEncodingException ignore) {}
-            request.setAttribute("currentUser", login);
+            request.setAttribute("currentUser", user);
             return true;
         }
         return true;

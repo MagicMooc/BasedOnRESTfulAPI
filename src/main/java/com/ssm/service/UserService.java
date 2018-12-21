@@ -1,34 +1,29 @@
 package com.ssm.service;
 
-import com.ssm.dao.LoginDao;
-import com.ssm.entity.Login;
+
+
+import com.ssm.dao.UserDao;
+import com.ssm.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * @Email: m15602498163@163.com
- * @Author: yoonada
- * @Date: 2018/12/20
- * @Time: 9:25 PM
- */
 @Service
-public class LoginService {
-
-    private LoginDao loginDao;
+public class UserService {
+    private UserDao userDao;
 
     @Autowired
-    public LoginService(LoginDao loginDao) {
-        this.loginDao = loginDao;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public Login add(Login login) {
-        String passwordHash =  passwordToHash(login.getPassword());
-        login.setPassword(passwordHash);
-        loginDao.register(login);
-        return findById(login.getId());
+    public User add(User user) {
+        String passwordHash =  passwordToHash(user.getPassword());
+        user.setPassword(passwordHash);
+        userDao.add(user);
+        return findById(user.getId());
     }
 
     private String passwordToHash(String password) {
@@ -52,20 +47,20 @@ public class LoginService {
         return null;
     }
 
-    public Login findById(int id) {
-        Login login = new Login();
-        login.setId(id);
-        return loginDao.findUser(login);
+    public User findById(int id) {
+        User user = new User();
+        user.setId(id);
+        return userDao.findOne(user);
     }
 
-    public Login findByLoginName(String loginName) {
-        Login param = new Login();
-        param.setLoginName(loginName);
-        return loginDao.findUser(param);
+    public User findByName(String name) {
+        User param = new User();
+        param.setName(name);
+        return userDao.findOne(param);
     }
 
-    public boolean comparePassword(Login login, Login userInDataBase) {
-        return passwordToHash(login.getPassword())      // 将用户提交的密码转换为 hash
+    public boolean comparePassword(User user, User userInDataBase) {
+        return passwordToHash(user.getPassword())      // 将用户提交的密码转换为 hash
                 .equals(userInDataBase.getPassword()); // 数据库中的 password 已经是 hash，不用转换
     }
 }

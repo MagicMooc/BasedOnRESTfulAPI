@@ -1,8 +1,8 @@
 package com.ssm.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ssm.entity.Login;
-import com.ssm.service.LoginService;
+import com.ssm.entity.User;
+import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * @Author: yoonada
  * @Date: 2018/12/20
  * @Time: 9:31 PM
+ * 注册
  */
 @CrossOrigin
 @RestController
@@ -18,20 +19,22 @@ import org.springframework.web.bind.annotation.*;
 public class RegisterController {
 
 
-    private LoginService loginService;
+    private UserService userService;
     @Autowired
-    public RegisterController(LoginService loginService){
-        this.loginService = loginService;
+    public RegisterController(UserService userService){
+        this.userService = userService;
     }
 
     @PostMapping("/register")
-    public Object add(@RequestBody Login login) {
-        if (loginService.findByLoginName(login.getLoginName()) != null) {
+    public Object add(@RequestBody User user) {
+        if (userService.findByName(user.getName()) != null) {
             JSONObject jsonObject = new JSONObject();
+            jsonObject.put("code",2);
+            jsonObject.put("msg","注册失败");
             jsonObject.put("error","用户名已被使用");
             return jsonObject;
         }
-        return loginService.add(login);
+        return userService.add(user);
     }
 
 
