@@ -1,5 +1,6 @@
 package com.ssm.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Time: 4:57 PM
  */
 @Data
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class User {
 
     private Integer id; // 这里不用 int， 应为 int 自动初始化为0，mybatis mapper 文件 就不能使用 <if test="id!=null"> 了

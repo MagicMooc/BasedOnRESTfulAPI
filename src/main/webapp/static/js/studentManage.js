@@ -53,6 +53,7 @@ function insert() {
         .catch(res => {
         })
 }
+
 // 编辑更新一整条信息
 function updateInfo() {
     let id = document.getElementById("updateId").value;
@@ -66,7 +67,7 @@ function updateInfo() {
             sex: sex,
             major: major
         }
-    )
+        )
         .then(res => {
             if (res.data.code === 1) {
                 alert("更新成功");
@@ -79,6 +80,7 @@ function updateInfo() {
         .catch(res => {
         })
 }
+
 function deleteInfo() {
     let id = document.getElementById("deleteId").value;
     var param = {id: id};

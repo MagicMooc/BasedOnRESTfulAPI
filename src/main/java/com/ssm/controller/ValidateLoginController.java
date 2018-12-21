@@ -32,12 +32,14 @@ public class ValidateLoginController {
         User userInDataBase = userService.findByName(user.getName());
         JSONObject jsonObject = new JSONObject();
         if (userInDataBase == null) {
+            jsonObject.put("code",0);
             jsonObject.put("error", "用户不存在");
         } else if (!userService.comparePassword(user, userInDataBase)) {
+            jsonObject.put("code",1);
             jsonObject.put("error", "密码不正确");
         } else {
             String token = authenticationService.getToken(userInDataBase);
-            jsonObject.put("code",1);
+            jsonObject.put("code",2);
             jsonObject.put("msg","登录成功");
             jsonObject.put("token", token);
             jsonObject.put("login", userInDataBase);

@@ -1,7 +1,9 @@
 package com.ssm.common.bean;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class VResponse<T> {
     private int code = 1;
     private Integer amount;

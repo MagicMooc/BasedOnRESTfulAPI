@@ -1,5 +1,7 @@
 package com.ssm.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @Date: 2018/12/1
  * @Time: 4:36 PM
  */
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Student implements Serializable {
 
     private long id;

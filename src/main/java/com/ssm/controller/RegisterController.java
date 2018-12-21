@@ -1,6 +1,5 @@
 package com.ssm.controller;
-
-import com.alibaba.fastjson.JSONObject;
+import com.ssm.common.bean.VResponse;
 import com.ssm.entity.User;
 import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,10 @@ public class RegisterController {
     @PostMapping("/register")
     public Object add(@RequestBody User user) {
         if (userService.findByName(user.getName()) != null) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("code",2);
-            jsonObject.put("msg","注册失败");
-            jsonObject.put("error","用户名已被使用");
-            return jsonObject;
+            return VResponse.error(0,"注册失败");
         }
-        return userService.add(user);
+        userService.add(user);
+        return VResponse.success("注册成功");
     }
 
 
