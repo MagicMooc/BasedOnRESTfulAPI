@@ -72,12 +72,12 @@
       <!--<version>1.11.3</version>-->
     <!--</dependency>-->
 
-    <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.google.code.gson/gson &ndash;&gt;-->
-    <!--<dependency>-->
-      <!--<groupId>com.google.code.gson</groupId>-->
-      <!--<artifactId>gson</artifactId>-->
-      <!--<version>2.8.2</version>-->
-    <!--</dependency>-->
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.2</version>
+    </dependency>
 
     <!-- 实现slf4j接口并整合 -->
     <dependency>
@@ -179,12 +179,42 @@
       <version>1.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>2.0.3.RELEASE</version>
+    </dependency>
+
 
     <dependency>
       <groupId>com.google.code.google-collections</groupId>
       <artifactId>google-collect</artifactId>
       <version>snapshot-20080530</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.22</version>
+    </dependency>
+<!---->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+
 
 
     <!--添加Lombok插件-->
