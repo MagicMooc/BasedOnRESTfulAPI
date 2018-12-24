@@ -17,7 +17,7 @@ function loginIndex() {
                 // 跳转到studentManage.html
             }else if(res.data.code === 2) {
                 document.cookie = res.data.token;
-                window.location.href = "static/html/studentManage.html";
+                window.location.href = "../html/studentManage.html";
             }
         })
         .catch(res => {
@@ -25,7 +25,7 @@ function loginIndex() {
 }
 // 跳转到注册页面
 function jumpRegister() {
-    window.location.href = "static/html/register.html";
+    window.location.href = "../html/register.html";
 }
 // 验证浏览器中是否存在cookie
 function checkWhetherExistCookie() {
