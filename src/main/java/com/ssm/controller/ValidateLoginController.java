@@ -18,15 +18,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class ValidateLoginController {
+    @Autowired
     private AuthenticationService authenticationService;
+    @Autowired
     private UserService userService;
 
-    @Autowired
-    public ValidateLoginController(AuthenticationService authenticationService, UserService userService) {
-        this.authenticationService = authenticationService;
-        this.userService = userService;
-    }
-
+    /**
+     * 根据姓名查找数据库是否存在该用户，如果没有，则返回用户不存在；
+     * 如果存在用户，则匹配密码是否正确
+     * 如果都正确，返回token，显示登录成功
+     * @param user
+     * @return
+     */
     @PostMapping("/validateLogin")
     public Object login(@RequestBody User user) {
         User userInDataBase = userService.findByName(user.getName());

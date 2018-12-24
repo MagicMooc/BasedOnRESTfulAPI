@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class RegisterController {
 
-
-    private UserService userService;
     @Autowired
-    public RegisterController(UserService userService){
-        this.userService = userService;
-    }
+    private UserService userService;
 
+    /**
+     * 注册一个新用户
+     * @param user
+     * @return
+     */
     @PostMapping("/register")
-    public Object add(@RequestBody User user) {
+    public Object register(@RequestBody User user) {
         if (userService.findByName(user.getName()) != null) {
             return VResponse.error(0,"注册失败");
         }
-        userService.add(user);
+        userService.register(user);
         return VResponse.success("注册成功");
     }
-
 
 }

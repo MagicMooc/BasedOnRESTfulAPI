@@ -10,7 +10,7 @@ import com.ssm.entity.User;
  */
 public interface UserDao {
 
-    int add(User user);
+    int register(User user);
 
     User findOne(User user);
 }
