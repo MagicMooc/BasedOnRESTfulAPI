@@ -80,7 +80,7 @@ function updateInfo() {
         .catch(res => {
         })
 }
-
+// 删除数据
 function deleteInfo() {
     let id = document.getElementById("deleteId").value;
     var param = {id: id};
