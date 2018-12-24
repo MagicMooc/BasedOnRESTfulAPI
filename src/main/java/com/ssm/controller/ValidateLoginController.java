@@ -7,6 +7,7 @@ import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 /**
  * @Email: m15602498163@163.com
  * @Author: yoonada
@@ -49,4 +50,5 @@ public class ValidateLoginController {
         }
         return jsonObject;
     }
+
 }

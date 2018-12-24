@@ -1,3 +1,4 @@
+// 注册
 function registerUser() {
     let name = document.getElementById("name").value;
     let password = document.getElementById("password").value;
@@ -18,6 +19,7 @@ function registerUser() {
         .catch(res => {
         })
 }
+// 注册成功后跳转到登录界面
 function jumpToLogin() {
     window.location.href = "../../index.html"
 }

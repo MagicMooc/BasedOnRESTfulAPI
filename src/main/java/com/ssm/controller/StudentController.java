@@ -1,5 +1,4 @@
 package com.ssm.controller;
-
 import com.ssm.common.bean.BaseController;
 import com.ssm.common.bean.VResponse;
 import com.ssm.entity.Student;
@@ -21,6 +20,7 @@ import java.util.List;
 @CrossOrigin
 @Controller
 @RequestMapping("/student")
+
 public class StudentController extends BaseController{
 
     @Resource
@@ -45,6 +45,7 @@ public class StudentController extends BaseController{
      * @param size
      * @return
      */
+
     @ResponseBody
     @GetMapping(value = "/findStudentList")
     public VResponse<List<Student>> findStudentList(@RequestParam(value = "page",defaultValue = "1") Integer page,
