@@ -21,22 +21,10 @@
     </div>
     <div class='login_fields'>
         <div class='login_fields__user'>
-            <div class='icon'>
-                <img alt="" src='static/login/img/user_icon_copy.png'>
-            </div>
             <input id="name" placeholder='用户名' maxlength="16" type='text' autocomplete="off"/>
-            <div class='validation'>
-                <img alt="" src='static/login/img/tick.png'>
-            </div>
         </div>
         <div class='login_fields__password'>
-            <div class='icon'>
-                <img alt="" src='static/login/img/lock_icon_copy.png'>
-            </div>
             <input id="password" placeholder='密码' maxlength="16" type='text' autocomplete="off">
-            <div class='validation'>
-                <img alt="" src='static/login/img/tick.png'>
-            </div>
         </div>
         <div class='login_fields__password'>
             <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
@@ -44,7 +32,7 @@
             </div>
         </div>
         <div class='login_fields__submit'>
-            <input type='button' value='登录' onclick="loginIndex()"><input type='button' value='注册' onclick="registerOnceAgain()">
+            <input type='button' value='登录' onclick="secondLogin()"><input type='button' value='注册' onclick="registerOnceAgain()">
         </div>
     </div>
     <div class='success'>
@@ -65,7 +53,8 @@
 <script src="../login/js/Treatment.js" type="text/javascript"></script>
 <script src="../login/js/jquery.mockjax.js" type="text/javascript"></script>
 <script src="../js/registrationAfterWithdrawal.js"></script>
-<script src="../js/login.js"></script>
+<script src="../js/theSecondLogin.js"></script>
+<!--<script src="../js/login.js"></script>-->
 <script src="../js/axios.min.js"></script>
 <script src="../js/register.js"></script>
 </body>

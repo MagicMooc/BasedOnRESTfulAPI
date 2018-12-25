@@ -1,5 +1,5 @@
-// 登录
-function loginIndex() {
+// 退出账号后的第二次登录
+function secondLogin() {
     let name = document.getElementById("name").value;
     let password = document.getElementById("password").value;
     axios.post(`http://127.0.0.1:8085/api/validateLogin`,
@@ -17,21 +17,10 @@ function loginIndex() {
                 // 跳转到studentManage.html
             }else if(res.data.code === 2) {
                 document.cookie = res.data.token;
-                window.location.href = "static/html/studentManage.html";
+                window.location.href = "../html/studentManage.html";
             }
         })
         .catch(res => {
         })
 }
-// 跳转到注册页面
-function jumpRegister() {
-    window.location.href = "static/html/register.html";
-}
-// 验证浏览器中是否存在cookie
-function checkWhetherExistCookie() {
-    var token =document.cookie.split(";")[0];
-    // 如果存在token，则跳转首页
-    if (token) {
-        window.location.href = "static/html/studentManage.html";
-    }
-}
+
