@@ -34,8 +34,8 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.findStudentListCount();
     }
 
-    public Student selectStudentById(long userId) {
-        return studentDao.selectStudentById(userId);
+    public Student selectStudentById(String studentId) {
+        return studentDao.selectStudentById(studentId);
     }
 
     @Transactional(readOnly = false)
@@ -50,8 +50,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Transactional(readOnly = false)
 
-    public Integer deleteStudent(long id) {
-        return this.studentDao.deleteStudent(id);
+    public Integer deleteStudent(String studentId) {
+        return this.studentDao.deleteStudent(studentId);
     }
 
 }

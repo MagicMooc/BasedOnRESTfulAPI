@@ -25,10 +25,10 @@ public interface StudentDao {
 
     /**
      * 通过id查询学生
-     * @param id
+     * @param
      * @return
      */
-    Student selectStudentById(long id);
+    Student selectStudentById(String studentId);
 
     /**
      * 添加学生
@@ -45,7 +45,7 @@ public interface StudentDao {
     Integer updateStudent(Student student);
 
 
-    Integer deleteStudent(long id);
+    Integer deleteStudent(String studentId);
 
 
 

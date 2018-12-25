@@ -33,8 +33,8 @@ public class StudentController extends BaseController{
      */
     @ResponseBody
     @GetMapping(value = "/findStudentById")
-    public Student findStudentById(@RequestParam("id") long id){
-        Student student = this.studentService.selectStudentById(id);
+    public Student findStudentById(@RequestParam("studentId") String studentId){
+        Student student = this.studentService.selectStudentById(studentId);
         return student;
     }
 
@@ -61,7 +61,7 @@ public class StudentController extends BaseController{
      * @return
      */
     @ResponseBody
-    @PutMapping(value = "/insertStudent")
+    @PostMapping(value = "/insertStudent")
     public VResponse<Object> insertStudent(@RequestBody Student student) {
         this.studentService.insertStudent(student);
         return VResponse.success("添加成功");
@@ -87,8 +87,8 @@ public class StudentController extends BaseController{
      */
     @ResponseBody
     @DeleteMapping(value = "/deleteStudent")
-    public VResponse<Object> deleteStudent(@RequestParam("id") long id) {
-        this.studentService.deleteStudent(id);
+    public VResponse<Object> deleteStudent(@RequestParam("studentId") String studentId) {
+        this.studentService.deleteStudent(studentId);
         return VResponse.success("删除成功");
     }
 

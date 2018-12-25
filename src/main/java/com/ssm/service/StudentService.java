@@ -30,7 +30,7 @@ public interface StudentService {
      * @param id
      * @return
      */
-    public Student selectStudentById(long id);
+    public Student selectStudentById(String studentId);
 
     /**
      * 添加学生
@@ -52,6 +52,6 @@ public interface StudentService {
      * @return
      */
 
-    Integer deleteStudent(long id);
+    Integer deleteStudent(String studentId);
 
 }

@@ -1,6 +1,7 @@
 package com.ssm.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -10,10 +11,13 @@ import java.io.Serializable;
  * @Date: 2018/12/1
  * @Time: 4:36 PM
  */
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+//@Data
+//@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Student implements Serializable {
 
     private long id;
+
+    private String studentId;
 
     private String name;
 
@@ -21,13 +25,20 @@ public class Student implements Serializable {
 
     private String major;
 
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -57,20 +68,22 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(long id, String name, String sex, String major) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.major = major;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
+                ", studentId='" + studentId + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", major='" + major + '\'' +
                 '}';
+    }
+
+    public Student(long id, String studentId, String name, String sex, String major) {
+        this.id = id;
+        this.studentId = studentId;
+        this.name = name;
+        this.sex = sex;
+        this.major = major;
     }
 }

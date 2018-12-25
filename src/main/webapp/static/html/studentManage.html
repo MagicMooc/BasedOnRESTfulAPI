@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>林条达的实训作业</title>
+    <title>林条达的期末作业</title>
     <link href="../bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 </head>
 <body onload="getData()">
@@ -56,7 +56,7 @@
             </thead>
             <tbody>
             <tr v-for="item in dataInfo">
-                <td>{{item.id}}</td>
+                <td>{{item.studentId}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.sex}}</td>
                 <td>{{item.major}}</td>
@@ -81,8 +81,8 @@
             <div class="modal-body">
                 <br>
                 <div style="margin-left:120px">
-                    <label for="insertId" class="col-sm-2 control-label">学号</label>
-                    <input type="text" class="form-control" id="insertId" placeholder="请输入学号" style="width: 200px">
+                    <label for="insertStudentId" class="col-sm-2 control-label">学号</label>
+                    <input type="text" class="form-control" id="insertStudentId" placeholder="请输入学号" style="width: 200px">
                     <br>
                     <label for="insertName" class="col-sm-2 control-label">名字</label>
                     <input type="text" class="form-control" id="insertName" placeholder="请输入名字" style="width: 200px">
@@ -117,8 +117,8 @@
             <div class="modal-body">
                 <br>
                 <div style="margin-left:120px">
-                    <label for="updateId" class="col-sm-2 control-label">学号</label>
-                    <input type="text" class="form-control" id="updateId" placeholder="请输入学号" style="width: 200px">
+                    <label for="updateStudentId" class="col-sm-2 control-label">学号</label>
+                    <input type="text" class="form-control" id="updateStudentId" placeholder="请输入学号" style="width: 200px">
                     <br>
                     <label for="updateName" class="col-sm-2 control-label">名字</label>
                     <input type="text" class="form-control" id="updateName" placeholder="请输入名字" style="width: 200px">
@@ -153,8 +153,8 @@
             <div class="modal-body" style="text-align: center">
                 <br>
                 <div style="margin-left:120px">
-                    <label for="insertId" class="col-sm-2 control-label">学号:</label>
-                    <input type="text" class="form-control" id="deleteId" placeholder="请输入学生学号" style="width: 160px">
+                    <label for="insertStudentId" class="col-sm-2 control-label">学号:</label>
+                    <input type="text" class="form-control" id="deleteStudentId" placeholder="请输入学生学号" style="width: 160px">
                 </div>
                 <br>
             </div>
@@ -177,6 +177,82 @@
     // 退出当前账号
     function withdrawAccount() {
         window.location.href = "../html/afterOutAccount.html";
+    }
+</script>
+<!--传JSON的写法-->
+<script>
+    // 添加信息
+    function insert() {
+        let studentId = document.getElementById("insertStudentId").value;
+        let name = document.getElementById("insertName").value;
+        let sex = document.getElementById("insertSex").value;
+        let major = document.getElementById("insertMajor").value;
+        axios.post(`http://127.0.0.1:8085/student/insertStudent`,
+            {
+                studentId: studentId,
+                name: name,
+                sex: sex,
+                major: major
+            }
+        )
+            .then(res => {
+                if (res.data.code === 1) {
+                    alert("添加成功");
+                    // 强制刷新页面
+                    window.location.href = window.location.href;
+                } else {
+                    alert('添加失败');
+                }
+            })
+            .catch(res => {
+            })
+    }
+</script>
+<script>
+    // 编辑更新一整条信息
+    function updateInfo() {
+        let studentId = document.getElementById("updateStudentId").value;
+        let name = document.getElementById("updateName").value;
+        let sex = document.getElementById("updateSex").value;
+        let major = document.getElementById("updateMajor").value;
+        axios.put(`http://127.0.0.1:8085/student/updateStudent`,
+            {
+                studentId: studentId,
+                name: name,
+                sex: sex,
+                major: major
+            }
+        )
+            .then(res => {
+                if (res.data.code === 1) {
+                    alert("更新成功");
+                    // 强制刷新页面
+                    window.location.href = window.location.href;
+                } else {
+                    alert('更新失败');
+                }
+            })
+            .catch(res => {
+            })
+    }
+</script>
+<script>
+    // 删除数据
+    function deleteInfo() {
+        let studentId = document.getElementById("deleteStudentId").value;
+        var param = {studentId: studentId};
+        axios.delete('http://127.0.0.1:8085/student/deleteStudent', {params: param})
+            .then(res => {
+                if (res.data.code === 1) {
+                    alert("删除成功");
+                    // 强制刷新页面
+                    window.location.href = window.location.href;
+                } else {
+                    alert('删除失败');
+                }
+            })
+            .catch(res => {
+            })
     }
 </script>
 </body>

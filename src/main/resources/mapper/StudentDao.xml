@@ -3,13 +3,13 @@
 <mapper namespace="com.ssm.dao.StudentDao">
 
     <!--根据具体id查询-->
-    <select id="selectStudentById" resultType="Student" parameterType="long">
-        SELECT * FROM student WHERE id = #{id}
+    <select id="selectStudentById" resultType="Student" parameterType="String">
+        SELECT * FROM student WHERE student_id = #{studentId}
     </select>
 
 
     <!--查询出所有数据-->
-    <select id="findStudentList" resultType="Student" parameterType="long">
+    <select id="findStudentList" resultType="Student">
         SELECT * FROM student
     </select>
 
@@ -21,12 +21,12 @@
     <!-- 如果是id是自增长的，不用id -->
     <insert id="insertStudent" parameterType="Student">
         insert into student (
-            id,
+            student_id,
             name,
             sex,
             major
         )values (
-            #{id},
+            #{studentId},
             #{name},
             #{sex},
             #{major}
@@ -39,11 +39,11 @@
             sex = #{sex},
             major = #{major}
         where
-            id = #{id}
+            student_id= #{studentId}
     </update>
 
-    <delete id="deleteStudent" parameterType="long">
-        delete from student where id = #{id}
+    <delete id="deleteStudent" parameterType="String">
+        delete from student where student_id = #{studentId}
     </delete>
 
 
