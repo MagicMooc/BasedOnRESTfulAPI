@@ -28,8 +28,6 @@ function getData() {
 //         })
 // }
 // 传json格式的写法
-
-
 // // 编辑更新一整条信息
 // function updateInfo() {
 //     let id = document.getElementById("updateId").value;

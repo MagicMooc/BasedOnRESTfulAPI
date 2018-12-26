@@ -28,7 +28,7 @@ public class StudentController extends BaseController{
 
     /**
      * 使用ResponseBody返回Json格式数据
-     * @param id
+     * @param studentId
      * @return
      */
     @ResponseBody
@@ -37,7 +37,6 @@ public class StudentController extends BaseController{
         Student student = this.studentService.selectStudentById(studentId);
         return student;
     }
-
 
     /**
      * 查询所有返回为一个List
@@ -80,10 +79,9 @@ public class StudentController extends BaseController{
     }
 
     /**
-     *  删除用户
-     * @param id
+     * 删除用户
+     * @param studentId
      * @return
-     * 传参数id删除
      */
     @ResponseBody
     @DeleteMapping(value = "/deleteStudent")

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.StudentClassCourseTeacherDao">
+
+    <!--左边数据库表对应字段，右边Entity层的属性-->
+    <sql id="studentClassCourseTeacherColumns">
+        st.id AS "id",
+        st.student_id AS "studentId",
+	    st.name AS "name",
+	    st.sex AS "sex",
+	    st.major AS "major",
+	    cl.class_id AS "className.classId",
+	    cl.class_name AS "className.className",
+	    co.course_id AS "course.courseId",
+	    co.course_name AS "course.courseName",
+	    tea.teacher_id AS "teacher.teacherId",
+	    tea.teacher_name AS "teacher.teacherName"
+    </sql>
+
+    <sql id="studentClassCourseTeacherJoins">
+
+    </sql>
+
+    <select id="findStudentClassCourseTeacherList" resultType="Student">
+        SELECT
+        <include refid="studentClassCourseTeacherColumns"/>
+        FROM
+        student st
+        JOIN student_class_course_teacher scct ON st.student_id = scct.student_id
+        JOIN class cl ON scct.class_id = cl.class_id
+        JOIN course co ON scct.course_id = co.course_id
+        JOIN teacher tea ON scct.teacher_id = tea.teacher_id
+        ORDER BY cl.class_id,co.course_id
+    </select>
+
+    <select id="findStudentClassCourseTeacherListByStudentId" resultType="Student">
+        SELECT
+        <include refid="studentClassCourseTeacherColumns"/>
+        FROM
+        student st
+        JOIN student_class_course_teacher scct ON st.student_id = scct.student_id
+        JOIN class cl ON scct.class_id = cl.class_id
+        JOIN course co ON scct.course_id = co.course_id
+        JOIN teacher tea ON scct.teacher_id = tea.teacher_id
+        WHERE st.student_id = #{studentId}
+    </select>
+
+
+</mapper>

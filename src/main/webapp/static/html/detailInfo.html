@@ -4,27 +4,177 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="../bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2D2D2D
+        }
+
+        .zhuce {
+            position: relative;
+            left: 220px;
+            bottom: 35px;
+        }
+    </style>
 </head>
-<body>
-<div style="width: 300px; margin: 0 auto;">
-    <br>
-    <br>
-</div>
-<div class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-collapse collapse ">
-            <ul class="nav navbar-nav" style="clear: both">
-                <li class="active"><a class="navitme" href="../html/studentManage.html">首页</a> </li>
-                <li><a class="navitme" href="../html/detailInfo.html">学生详细信息</a> </li>
-                <li><a class="dropdown-toggle" data-toggle="dropdown">退出账号<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <button class="btn btn-default" onclick="withdrawAccount()">确定退出当前账号吗?</button>
-                    </ul>
-                </li>
-            </ul>
+<body onload="background()">
+<div id="mydiv" style="height:1000px;">
+    <div style="width: 300px; margin: 0 auto;">
+        <br>
+        <br>
+    </div>
+    <div>
+        <div class="container">
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav" style="clear: both;color: #2D2D2D">
+                    <li class="active"><a class="navitme" href="../html/studentManage.html"
+                                          style="color: #7FFFD4">首页</a></li>
+                    <li><a class="navitme" href="../html/detailInfo.html" style="color: #7FFFD4">学生详细信息</a></li>
+                    <li><a class="dropdown-toggle" data-toggle="dropdown" style="color: #7FFFD4">退出账号<b
+                            class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <button class="btn btn-default" onclick="withdrawAccount()" style="color: #7FFFD4">
+                                确定退出当前账号吗?
+                            </button>
+                        </ul>
+                    </li>
+                    <li><a class="navitme" style="color:#7FFFD4">管理员:</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+    <div style="width: 300px; margin: 0 auto;">
+        <br>
+        <br>
+    </div>
+
+    <div class="container">
+        <!--标题 -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="color:#00EEEE">查询学生详细信息</h1>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!--按钮 -->
+        <div class="row">
+            <div style="text-align: left">
+                <div>
+                    <input type="text" class="form-control" id="inputSearchStudentId" placeholder="请输入你要搜索的学号"
+                           style="width: 200px">
+                </div>
+                <div class="zhuce">
+                    <button class="btn btn-primary" onclick="searchByStudentId()">搜索</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive" id="app" style="text-align: center">
+            <br>
+            <table class="table" style="text-align: center;background-color: #00EEEE;" id="getTable">
+                <br>
+                <thead>
+                <tr>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">学号</th>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">名字</th>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">性别</th>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">专业</th>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">班级</th>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">课程</th>
+                    <th style="text-align: center;color: #FF7F24;font-size: 18px">课程所对应教师</th>
+                </tr>
+                </thead>
+                <!--<tbody>-->
+                <!--<tr v-for="item in dataInfo" style="color: #00F5FF">-->
+                <!--<td>{{item.studentId}}</td>-->
+                <!--<td>{{item.name}}</td>-->
+                <!--<td>{{item.sex}}</td>-->
+                <!--<td>{{item.major}}</td>-->
+                <!--<td>{{item.className.className}}</td>-->
+                <!--<td>{{item.course.courseName}}</td>-->
+                <!--<td>{{item.teacher.teacherName}}</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            </table>
+        </div>
+    </div>
+
 </div>
-<div style="text-align: center;font-size: 20px">Hello</div>
+<script type="text/javascript">
+    function background() {
+        //配置
+        var config = {
+            vx: 4,	//小球x轴速度,正为右，负为左
+            vy: 4,	//小球y轴速度
+            height: 2,	//小球高宽，其实为正方形，所以不宜太大
+            width: 2,
+            count: 200,		//点个数
+            color: "121, 162, 185", 	//点颜色
+            stroke: "130,255,255", 		//线条颜色
+            dist: 6000, 	//点吸附距离
+            e_dist: 20000, 	//鼠标吸附加速距离
+            max_conn: 10 	//点到点最大连接数
+        };
+        //调用
+        CanvasParticle(config);
+    }
+</script>
+<script>
+    // 根据学号查询出所有信息
+    function searchByStudentId() {
+        let studentId = document.getElementById("inputSearchStudentId").value;
+        var param = {studentId: studentId};
+        axios.get('http://127.0.0.1:8085/stu/findStudentClassCourseTeacherListByStudentId', {params: param})
+            .then(function (response) {
+                let createTable = document.getElementById("getTable");
+                let createTBody = document.createElement("tbody");
+                let count = response.data.result.length;
+                for (let j = 0; j < count; j++) {
+                    let tr = document.createElement("tr");
+                    let studentId = document.createElement("td");
+                    let name = document.createElement("td");
+                    let sex = document.createElement("td");
+                    let major = document.createElement("td");
+                    let className = document.createElement("td",);
+                    let courseName = document.createElement("td");
+                    let teacherName = document.createElement("td");
+                    let getStudentId = response.data.result[j].studentId;
+                    let getName = response.data.result[j].name;
+                    let getSex = response.data.result[j].sex;
+                    let getMajor = response.data.result[j].major;
+                    let getClassName = response.data.result[j].className.className;
+                    let getCourseName = response.data.result[j].course.courseName;
+                    let getTeacherName = response.data.result[j].teacher.teacherName;
+                    studentId.innerHTML = getStudentId;
+                    name.innerHTML = getName;
+                    sex.innerHTML = getSex;
+                    major.innerHTML = getMajor;
+                    className.innerHTML = getClassName;
+                    courseName.innerHTML = getCourseName;
+                    teacherName.innerHTML = getTeacherName;
+                    tr.appendChild(studentId);
+                    tr.appendChild(name);
+                    tr.appendChild(sex);
+                    tr.appendChild(major);
+                    tr.appendChild(className);
+                    tr.appendChild(courseName);
+                    tr.appendChild(teacherName);
+                    createTBody.appendChild(tr);
+                }
+                createTable.appendChild(createTBody);
+                // var app = new Vue({
+                //     el: '#app',
+                //     data: {
+                //         dataInfo: response.data.result
+                //     }
+                // });
+                // // this.dataInfo = "";
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+<script src="../js/axios.min.js"></script>
+<script src="../js/vue.js"></script>
 </body>
 </html>
