@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -36,6 +36,11 @@
             <div class='login_fields__password'>
                 <input id="password" placeholder='密码' maxlength="16" type='text' autocomplete="off">
             </div>
+            <div class='login_fields__password'>
+                <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
+                    <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+                </div>
+            </div>
             <div class='login_fields__submit'>
                 <div>
                     <input type='button' value='登录' onclick="secondLogin()">
@@ -52,9 +57,10 @@
         </div>
     </div>
 </div>
+<script src="../js/axios.min.js"></script>
+<script src="../js/vue.js"></script>
 <script src="../js/registrationAfterWithdrawal.js"></script>
 <script src="../js/theSecondLogin.js"></script>
-<script src="../js/axios.min.js"></script>
 <script src="../js/register.js"></script>
 <script type="text/javascript" src="../js/canvas-particle.js"></script>
 <script type="text/javascript">

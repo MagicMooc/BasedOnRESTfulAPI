@@ -26,18 +26,8 @@
         <div class="container">
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav" style="clear: both;color: #2D2D2D">
-                    <li class="active"><a class="navitme" href="../html/studentManage.html"
-                                          style="color: #7FFFD4">首页</a></li>
-                    <li><a class="navitme" href="../html/detailInfo.html" style="color: #7FFFD4">学生详细信息</a></li>
-                    <li><a class="dropdown-toggle" data-toggle="dropdown" style="color: #7FFFD4">退出账号<b
-                            class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <button class="btn btn-default" onclick="withdrawAccount()" style="color: #7FFFD4">
-                                确定退出当前账号吗?
-                            </button>
-                        </ul>
-                    </li>
-                    <li><a class="navitme" style="color:#7FFFD4">管理员:</a></li>
+                    <li class="active"><a class="navitme" href="../html/studentManage.html" style="color: #7FFFD4">首页</a> </li>
+                    <li><a class="navitme" href="../html/detailInfo.html" style="color: #7FFFD4">学生详细信息</a> </li>
                 </ul>
             </div>
         </div>
@@ -70,7 +60,7 @@
         </div>
         <div class="table-responsive" id="app" style="text-align: center">
             <br>
-            <table class="table" style="text-align: center;background-color: #00EEEE;" id="getTable">
+            <table class="table" style="text-align: center;background-color: #2D2D2D;" id="getTable">
                 <br>
                 <thead>
                 <tr>
@@ -83,22 +73,12 @@
                     <th style="text-align: center;color: #FF7F24;font-size: 18px">课程所对应教师</th>
                 </tr>
                 </thead>
-                <!--<tbody>-->
-                <!--<tr v-for="item in dataInfo" style="color: #00F5FF">-->
-                <!--<td>{{item.studentId}}</td>-->
-                <!--<td>{{item.name}}</td>-->
-                <!--<td>{{item.sex}}</td>-->
-                <!--<td>{{item.major}}</td>-->
-                <!--<td>{{item.className.className}}</td>-->
-                <!--<td>{{item.course.courseName}}</td>-->
-                <!--<td>{{item.teacher.teacherName}}</td>-->
-                <!--</tr>-->
-                <!--</tbody>-->
             </table>
         </div>
     </div>
 
 </div>
+<script type="text/javascript" src="../js/canvas-particle.js"></script>
 <script type="text/javascript">
     function background() {
         //配置
@@ -130,6 +110,7 @@
                 let count = response.data.result.length;
                 for (let j = 0; j < count; j++) {
                     let tr = document.createElement("tr");
+                    tr.style.color='#00F5FF';
                     let studentId = document.createElement("td");
                     let name = document.createElement("td");
                     let sex = document.createElement("td");
@@ -161,13 +142,6 @@
                     createTBody.appendChild(tr);
                 }
                 createTable.appendChild(createTBody);
-                // var app = new Vue({
-                //     el: '#app',
-                //     data: {
-                //         dataInfo: response.data.result
-                //     }
-                // });
-                // // this.dataInfo = "";
             })
             .catch(function (error) {
                 console.log(error);
